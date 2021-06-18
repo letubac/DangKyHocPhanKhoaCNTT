@@ -1,7 +1,7 @@
-{% extends 'staff_template/base_template.html' %}
+{% extends 'staff_gv_template/base_template.html' %}
 
 {% block page_title %}
-    Feedback Message
+    Phản Hồi
 {% endblock page_title %}
 
 {% block main_content %}
@@ -45,7 +45,7 @@
                                 </div>
                                 {% endif %}
                             
-                    <form method="POST" action="{% url 'staff_feedback_save' %}">
+                    <form method="POST" action="{% url 'staff_gv_feedback_save' %}">
                         {% csrf_token %}
                         <div class="card-body">
                            

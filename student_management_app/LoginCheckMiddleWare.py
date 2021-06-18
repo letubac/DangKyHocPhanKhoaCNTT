@@ -35,6 +35,13 @@ class LoginCheckMiddleWare(MiddlewareMixin):
                     pass
                 else:
                     return redirect("student_home")
+            elif user.user_type == "4":
+                if modulename == "student_management_app.StaffGVView":
+                    pass
+                elif modulename == "student_management_app.views" or modulename == "django.views.static":
+                    pass
+                else:
+                    return redirect("staff_gv_home")
 
             else:
                 return redirect("login")

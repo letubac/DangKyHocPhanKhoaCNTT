@@ -1,10 +1,438 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>$Title$</title>
-</head>
-<body>
-$END$
-</body>
-</html>
+{% extends 'student_template/base_template.html' %}
+
+{% block page_title %}
+    <i class="far fa-clock" style="color: red;font-size: large"></i> Thời Khoá Biểu
+{% endblock page_title %}
+
+{% block main_content %}
+<section class="content">
+        <div class="container-fluid">
+
+            <div class="row">
+                <div class="col-md-12">
+                    <!-- general form elements -->
+                    <div class="card card-primary">
+                    <div class="card-header">
+                        <span class="card-title" style="font-size: large"><img src="../../../static/dist/img/tkb.jpg" height="100" width="100" style="margin-right: auto"/>Thông Tin TKB</span>
+                    </div>
+                    <!-- /.card-header -->
+
+                                {% comment %} Display Messages {% endcomment %}
+                                {% if messages %}
+                                <div class="form-group">
+                                <div class="col-12">
+                                    {% for message in messages %}
+                                    {% if message.tags == "error" %}
+                                        <div class="alert alert-danger alert-dismissible fade show" role="alert" style="margin-top: 10px;">
+                                        {{ message }}
+                                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                        </div>
+                                    {% elif message.tags == "success" %}
+                                        <div class="alert alert-success alert-dismissible fade show" role="alert" style="margin-top: 10px;">
+                                        {{ message }}
+                                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                        </div>
+                                    {% endif %}
+                                    {% endfor %}
+                                </div>
+                                </div>
+                                {% endif %}
+
+                    <form method="POST" action="{% url 'student_feedback_save' %}">
+                        {% csrf_token %}
+                        <div class="card-body">
+
+                            <div class="form-group">
+                                <div class="row">
+
+                                <div class="col-md-2 pt-2">
+                                <span><i class="fas fa-eye"></i> Chọn Học Kì Xem TKB </span>
+                                    </div >
+                                    <div class="col-md-3">
+                                             <select class="wide" >
+                                <option data-display="Học Kì 3-Năm học 2020-2021 ">Học Kì 3-Năm học 2020-2021</option>
+                                 <option value="1">Some option</option>
+                                 <option value="2">Another option</option>
+                                <option value="3" disabled>A disabled option</option>
+                                         <option value="4">Potato</option>
+                                    </select>
+                                         </div>
+                                    <div class="col-md-4">
+                                        <input  class="search form-control" type="text" id="myInput" onkeyup="myFunction()" placeholder="Tìm Kiếm.." title="Type in a name" style="width: 50%">
+
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-3">
+                                    <select  class='wide' >
+                                <option data-display="TKB Theo Tuần ">Học Kì 3-Năm học 2020-2021</option>
+                                 <option value="1">Some option</option>
+                                 <option value="2">Another option</option>
+                                <option value="3" disabled>A disabled option</option>
+                                         <option value="4">Potato</option>
+                                    </select>
+                                </div>
+
+                            <div class="col-md-4">
+                                    <select  class='wide'>
+                                <option data-display="Tuần 46 [ Từ 14/6/2021-- Đến 20/6/2021] ">Học Kì 3-Năm học 2020-2021</option>
+                                 <option value="1">Some option</option>
+                                 <option value="2">Another option</option>
+                                <option value="3" disabled>A disabled option</option>
+                                         <option value="4">Potato</option>
+                                    </select>
+
+                            </div>
+
+                        </div>
+                        <!-- /.card-body -->
+                            <label class="container">( Lưu ý: tuần 46 tương ứng với tuần 1 của học kỳ, bắt đầu từ ngày 14/06/2021) ...
+</label>
+<div class="table-responsive" id="tkb" >
+                    <table id="myTable" class="table table-bordered text-center">
+                        <thead>
+                            <tr class="header bg-light-gray">
+                                <th class="text-uppercase">Thời Gian
+                                </th>
+                                <th class="text-uppercase">Thứ Hai</th>
+                                <th class="text-uppercase">Thứ Ba</th>
+                                <th class="text-uppercase">Thứ Tư</th>
+                                <th class="text-uppercase">Thứ Năm</th>
+                                <th class="text-uppercase">Thứ Sáu</th>
+                                <th class="text-uppercase">Thứ Bảy</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr class="popupOpen" data-href="#entry1">
+                                <td class="align-middle">Sáng</td>
+                                <td>
+                                    <span class="bg-sky padding-5px-tb padding-15px-lr border-radius-5 margin-10px-bottom text-white font-size16 xs-font-size13">Dance</span>
+                                    <div class="margin-10px-top font-size14">9:00-10:00</div>
+                                    <div class="font-size13 text-light-gray">Ivana Wong</div>
+                                </td>
+                                <td>
+                                    <span class="bg-green padding-5px-tb padding-15px-lr border-radius-5 margin-10px-bottom text-white font-size16  xs-font-size13">Yoga</span>
+                                    <div class="margin-10px-top font-size14">9:00-10:00</div>
+                                    <div class="font-size13 text-light-gray">Marta Healy</div>
+                                </td>
+
+                                <td>
+                                    <span class="bg-yellow padding-5px-tb padding-15px-lr border-radius-5 margin-10px-bottom text-white font-size16  xs-font-size13">Music</span>
+                                    <div class="margin-10px-top font-size14">9:00-10:00</div>
+                                    <div class="font-size13 text-light-gray">Ivana Wong</div>
+                                </td>
+                                <td>
+                                    <span class="bg-sky padding-5px-tb padding-15px-lr border-radius-5 margin-10px-bottom text-white font-size16  xs-font-size13">Dance</span>
+                                    <div class="margin-10px-top font-size14">9:00-10:00</div>
+                                    <div class="font-size13 text-light-gray">Ivana Wong</div>
+                                </td>
+                                <td>
+                                    <span class="bg-purple padding-5px-tb padding-15px-lr border-radius-5 margin-10px-bottom text-white font-size16  xs-font-size13">Art</span>
+                                    <div class="margin-10px-top font-size14">9:00-10:00</div>
+                                    <div class="font-size13 text-light-gray">Kate Alley</div>
+                                </td>
+                                <td>
+                                    <span class="bg-pink padding-5px-tb padding-15px-lr border-radius-5 margin-10px-bottom text-white font-size16  xs-font-size13">English</span>
+                                    <div class="margin-10px-top font-size14">9:00-10:00</div>
+                                    <div class="font-size13 text-light-gray">James Smith</div>
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td class="align-middle">Chiều</td>
+                                <td>
+                                    <span class="bg-yellow padding-5px-tb padding-15px-lr border-radius-5 margin-10px-bottom text-white font-size16  xs-font-size13">Music</span>
+                                    <div class="margin-10px-top font-size14">10:00-11:00</div>
+                                    <div class="font-size13 text-light-gray">Ivana Wong</div>
+                                </td>
+                                <td class="bg-light-gray">
+
+                                </td>
+                                <td>
+                                    <span class="bg-purple padding-5px-tb padding-15px-lr border-radius-5 margin-10px-bottom text-white font-size16  xs-font-size13">Art</span>
+                                    <div class="margin-10px-top font-size14">10:00-11:00</div>
+                                    <div class="font-size13 text-light-gray">Kate Alley</div>
+                                </td>
+                                <td>
+                                    <span class="bg-green padding-5px-tb padding-15px-lr border-radius-5 margin-10px-bottom text-white font-size16  xs-font-size13">Yoga</span>
+                                    <div class="margin-10px-top font-size14">10:00-11:00</div>
+                                    <div class="font-size13 text-light-gray">Marta Healy</div>
+                                </td>
+                                <td>
+                                    <span class="bg-pink padding-5px-tb padding-15px-lr border-radius-5 margin-10px-bottom text-white font-size16  xs-font-size13">English</span>
+                                    <div class="margin-10px-top font-size14">10:00-11:00</div>
+                                    <div class="font-size13 text-light-gray">James Smith</div>
+                                </td>
+                                <td class="bg-light-gray">
+
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td class="align-middle">Tối</td>
+                                <td>
+                                    <span class="bg-lightred padding-5px-tb padding-15px-lr border-radius-5 margin-10px-bottom text-white font-size16  xs-font-size13">Break</span>
+                                    <div class="margin-10px-top font-size14">11:00-12:00</div>
+                                </td>
+                                <td>
+                                    <span class="bg-lightred padding-5px-tb padding-15px-lr border-radius-5 margin-10px-bottom text-white font-size16  xs-font-size13">Break</span>
+                                    <div class="margin-10px-top font-size14">11:00-12:00</div>
+                                </td>
+                                <td>
+                                    <span class="bg-lightred padding-5px-tb padding-15px-lr border-radius-5 margin-10px-bottom text-white font-size16  xs-font-size13">Break</span>
+                                    <div class="margin-10px-top font-size14">11:00-12:00</div>
+                                </td>
+                                <td>
+                                    <span class="bg-lightred padding-5px-tb padding-15px-lr border-radius-5 margin-10px-bottom text-white font-size16  xs-font-size13">Break</span>
+                                    <div class="margin-10px-top font-size14">11:00-12:00</div>
+                                </td>
+                                <td>
+                                    <span class="bg-lightred padding-5px-tb padding-15px-lr border-radius-5 margin-10px-bottom text-white font-size16  xs-font-size13">Break</span>
+                                    <div class="margin-10px-top font-size14">11:00-12:00</div>
+                                </td>
+                                <td>
+                                    <span class="bg-lightred padding-5px-tb padding-15px-lr border-radius-5 margin-10px-bottom text-white font-size16  xs-font-size13">Break</span>
+                                    <div class="margin-10px-top font-size14">11:00-12:00</div>
+                                </td>
+                            </tr>
+
+
+
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+
+                        <div class="card-footer">
+                       <div class="container-fluid">
+                           <div class="row">
+                               <div class="col-md-3">
+                                    <button type="submit" class="btn btn-info">Tuần Đầu</button>
+                               </div>
+                                <div class="col-md-3">
+                                    <button type="submit" class="btn btn-danger">Tuần Giữa</button>
+                               </div>
+                                <div class="col-md-3">
+                                    <button type="submit" class="btn btn-primary">Tuần Kế</button>
+                               </div>
+                                <div class="col-md-3">
+                                    <button type="submit" class="btn btn-success">Tuần Cuối</button>
+                               </div>
+                           </div>
+                       </div>
+                        </div>
+
+                    </form>
+
+                    </div>
+                    <!-- /.card -->
+
+
+
+                </div>
+                <label class="container">( Dữ liệu được cập nhật vào lúc: 22:27 Ngày: 4/6/2021)</label>
+            </div>
+
+
+<div id="entry1" class="largWin"> <a href="#" class="close">X</a>
+
+        <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede mollis pretium. Integer tincidunt. Cras dapibus. Vivamus elementum semper nisi. Aenean vulputate eleifend tellus. Aenean leo ligula, porttitor eu, consequat vitae, eleifend ac, enim. Aliquam lorem ante, dapibus in, viverra quis, feugiat a, tellus. Phasellus viverra nulla ut metus varius laoreet. Quisque rutrum. Aenean imperdiet. Etiam ultricies nisi vel augue. Curabitur ullamcorper ultricies nisi. Nam eget dui. Etiam rhoncus. Maecenas tempus, tellus eget condimentum rhoncus, sem quam semper libero, sit amet adipiscing sem neque sed ipsum. Nam quam nunc, blandit vel, luctus pulvinar, hendrerit id, lorem. Maecenas nec odio et ante tincidunt tempus. Donec vitae sapien ut libero venenatis faucibus. Nullam quis ante. Etiam sit amet orci eget eros faucibus tincidunt. Duis leo. Sed fringilla mauris sit amet nibh. Donec sodales sagittis magna. Sed consequat, leo eget bibendum sodales, augue velit cursus nunc,</p>
+    </div>
+        </div><!-- /.container-fluid -->
+      </section>
+
+</div>
+<style>
+
+    table tr td {
+    width:200px;
+    border-top:1px solid #ccc
+}
+    table tr:hover td {
+    cursor:pointer;
+    background:#ccc
+}
+    #mask {
+    display: none;
+    background: #666;
+    position: fixed;
+    left: 0;
+    top: 0;
+    z-index: 100;
+    width: 100%;
+    height: 100%;
+    -moz-opacity:0.80;
+    opacity:0.80;
+    z-index: 999;
+}
+.close {
+    font:2em tahoma;
+    color:red;
+    text-decoration:none;
+}
+.largWin {
+    padding:20px;
+    background-color:#fff;
+    border:1px solid #ccc;
+    display:none;
+    z-index: 99999;
+    width:400px;
+    height:400px;
+    position:absolute;
+    overflow:scroll;
+}
+  .bg-light-gray {
+    background-color: #f7f7f7;
+}
+.table-bordered thead td, .table-bordered thead th {
+    border-bottom-width: 2px;
+}
+.table thead th {
+    vertical-align: bottom;
+    border-bottom: 2px solid #dee2e6;
+}
+.table-bordered td, .table-bordered th {
+    border: 1px solid #dee2e6;
+}
+
+
+.bg-sky.box-shadow {
+    box-shadow: 0px 5px 0px 0px #00a2a7
+}
+
+.bg-orange.box-shadow {
+    box-shadow: 0px 5px 0px 0px #af4305
+}
+
+.bg-green.box-shadow {
+    box-shadow: 0px 5px 0px 0px #4ca520
+}
+
+.bg-yellow.box-shadow {
+    box-shadow: 0px 5px 0px 0px #dcbf02
+}
+
+.bg-pink.box-shadow {
+    box-shadow: 0px 5px 0px 0px #e82d8b
+}
+
+.bg-purple.box-shadow {
+    box-shadow: 0px 5px 0px 0px #8343e8
+}
+
+.bg-lightred.box-shadow {
+    box-shadow: 0px 5px 0px 0px #d84213
+}
+
+
+.bg-sky {
+    background-color: #02c2c7
+}
+
+.bg-orange {
+    background-color: #e95601
+}
+
+.bg-green {
+    background-color: #5bbd2a
+}
+
+.bg-yellow {
+    background-color: #f0d001
+}
+
+.bg-pink {
+    background-color: #ff48a4
+}
+
+.bg-purple {
+    background-color: #9d60ff
+}
+
+.bg-lightred {
+    background-color: #ff5722
+}
+
+.padding-15px-lr {
+    padding-left: 15px;
+    padding-right: 15px;
+}
+.padding-5px-tb {
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+.margin-10px-bottom {
+    margin-bottom: 10px;
+}
+.border-radius-5 {
+    border-radius: 5px;
+}
+
+.margin-10px-top {
+    margin-top: 10px;
+}
+.font-size14 {
+    font-size: 14px;
+}
+
+.text-light-gray {
+    color: #d6d5d5;
+}
+.font-size13 {
+    font-size: 13px;
+}
+
+.table-bordered td, .table-bordered th {
+    border: 1px solid #dee2e6;
+}
+.table td, .table th {
+    padding: .75rem;
+    vertical-align: top;
+    border-top: 1px solid #dee2e6;
+}
+</style>
+
+<script>
+function myFunction() {
+  var input, filter, table, tr, td, i, txtValue;
+  input = document.getElementById("myInput");
+  filter = input.value.toUpperCase();
+  table = document.getElementById("myTable");
+  tr = table.getElementsByTagName("tr");
+  for (i = 0; i < tr.length; i++) {
+    td = tr[i].getElementsByTagName("td")[0];
+    if (td) {
+      txtValue = td.textContent || td.innerText;
+      if (txtValue.toUpperCase().indexOf(filter) > -1) {
+        tr[i].style.display = "";
+      } else {
+        tr[i].style.display = "none";
+      }
+    }
+  }
+}
+</script>
+{% load static %}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ {% endblock main_content %}

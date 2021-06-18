@@ -16,85 +16,13 @@
                     <!-- general form elements -->
                     <div class="card card-primary">
                     <div class="card-header">
-                        <h3 class="card-title"><i class="fas fa-user-plus"></i>Thêm</h3>
+                        <h3 class="card-title">Thêm Giảng Viên</h3>
                     </div>
                     <!-- /.card-header -->
                     <!-- form start -->
-                    <form role="form" method="POST" action="{% url 'add_staff_save' %}">
-                        {% csrf_token %}
+                    {% url 'add_staff_save' as action_path %}
+                    {% include 'hod_template/form_template.html' with messages=messages form=form action_path=action_path button_text="+Thêm Nhân Viên" %}
 
-                        
-                                {% comment %} Display Messages {% endcomment %}
-                                {% if messages %}
-                                <div class="form-group">
-                                <div class="col-12">
-                                    {% for message in messages %}
-                                    {% if message.tags == "error" %}
-                                        <div class="alert alert-danger alert-dismissible fade show" role="alert" style="margin-top: 10px;">
-                                        {{ message }}
-                                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                                            <span aria-hidden="true">&times;</span>
-                                        </button>
-                                        </div>
-                                    {% elif message.tags == "success" %}
-                                        <div class="alert alert-success alert-dismissible fade show" role="alert" style="margin-top: 10px;">
-                                        {{ message }}
-                                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                                            <span aria-hidden="true">&times;</span>
-                                        </button>
-                                        </div>
-                                    {% endif %}
-                                    {% endfor %}
-                                </div>
-                                </div>
-                                {% endif %}
-                            
-
-                        <div class="card-body">
-                            <div class="form-group">
-                                <label>Địa Chỉ Email</label>
-                                <input type="email" class="form-control" name="email" placeholder="Enter email" id="id_email">
-                            </div>
-
-                            <div class="form-group">
-                                <label>Tài Khoản</label>
-                                <input type="text" class="form-control" name="username" placeholder="Username" id="id_username">
-                            </div>
-
-                            <div class="form-group">
-                                <label>Mật Khẩu</label>
-                                <input type="password" class="form-control" name="password" placeholder="Mật Khẩu">
-                            </div>
-
-                            <div class="form-group">
-                                <label>Tên</label>
-                                <input type="text" class="form-control" name="first_name" placeholder="First Name">
-                            </div>
-
-                            <div class="form-group">
-                                <label>Họ</label>
-                                <input id="tags" type="text" class="form-control" name="last_name" placeholder="Last Name">
-                            </div>
-
-                            <div class="form-group">
-                                <label>Địa Chỉ</label>
-                                <textarea  class="form-control" name="address" placeholder="Address"></textarea>
-                            </div>
-
-
-
-                            <div class="form-group">
-                                <label><i class="fas fa-birthday-cake"></i> Ngày Sinh</label>
-                                    <input type="text" id="datepicker" class="form-control" name="birthday" placeholder="Ngày Sinh" />
-
-                            </div>
-                        </div>
-                        <!-- /.card-body -->
-
-                        <div class="card-footer">
-                        <button type="submit" class="btn btn-outline-primary"><i class="far fa-plus-square"></i> Thêm</button>
-                        </div>
-                    </form>
                     </div>
                     <!-- /.card -->
 
@@ -106,7 +34,7 @@
 
   {% endblock main_content %}
 
-    {% block custom_js %}
+  {% block custom_js %}
     {% comment %} Checking if email and username already exists or not usin Ajax {% endcomment %}
 
     <script>
@@ -126,11 +54,11 @@
 
                         if(response == "True"){
                             $(".email_error").remove();
-                            $("<span class='email_error' style='color: red; padding: 5px; font-weight: bold;'> Email Không Hợp Lệ. </span>").insertAfter("#id_email")
+                            $("<span class='email_error' style='color: red; padding: 5px; font-weight: bold;'> Email Not Available. </span>").insertAfter("#id_email")
                         }
                         else{
                             $(".email_error").remove();
-                            $("<span class='email_error' style='color: green; padding: 5px; font-weight: bold;'> Email Hợp Lệ. </span>").insertAfter("#id_email")
+                            $("<span class='email_error' style='color: green; padding: 5px; font-weight: bold;'> Email Available. </span>").insertAfter("#id_email")
                         }
                     })
 
@@ -141,12 +69,12 @@
                 else{
                     $(".email_error").remove();
                 }
-                
+
             })
 
             $("#id_username").keyup(function(){
                 var username = $(this).val();
-                
+
                 if(username!=""){
                     $.ajax({
                         url : '{% url 'check_username_exist' %}',
@@ -158,11 +86,11 @@
 
                         if(response == "True"){
                             $(".username_error").remove();
-                            $("<span class='username_error' style='color: red; padding: 5px; font-weight: bold;'> Tài Khoản Đã Tồn Tại. </span>").insertAfter("#id_username")
+                            $("<span class='username_error' style='color: red; padding: 5px; font-weight: bold;'> Username Not Available. </span>").insertAfter("#id_username")
                         }
                         else{
                             $(".username_error").remove();
-                            $("<span class='username_error' style='color: green; padding: 5px; font-weight: bold;'> Tài Khoản Hợp Lệ. </span>").insertAfter("#id_username")
+                            $("<span class='username_error' style='color: green; padding: 5px; font-weight: bold;'> Username Available. </span>").insertAfter("#id_username")
                         }
                     })
 

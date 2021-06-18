@@ -1,6 +1,7 @@
-{% load static %}
 
 <!DOCTYPE html>
+{% load static %}
+
 <html>
 <head>
   <meta charset="utf-8">
@@ -9,27 +10,29 @@
   <!-- Tell the browser to be responsive to screen width -->
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <!-- Font Awesome -->
-  <link rel="stylesheet" href="{% static "fontawesome-free/css/all.min.css" %}">
+  <link rel="stylesheet" href="{% static 'fontawesome-free/css/all.min.css' %}">
   <!-- Ionicons -->
   <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
   <!-- Tempusdominus Bbootstrap 4 -->
   <link rel="stylesheet" href="{% static 'tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css' %}">
   <!-- iCheck -->
-  <link rel="stylesheet" href="{% static "icheck-bootstrap/icheck-bootstrap.min.css" %}">
+  <link rel="stylesheet" href="{% static 'icheck-bootstrap/icheck-bootstrap.min.css' %}">
   <!-- JQVMap -->
-  <link rel="stylesheet" href="{% static "jqvmap/jqvmap.min.css" %}">
+  <link rel="stylesheet" href="{% static 'jqvmap/jqvmap.min.css' %}">
   <!-- Theme style -->
   <link rel="stylesheet" href="{% static 'dist/css/adminlte.min.css'  %}">
   <!-- overlayScrollbars -->
-  <link rel="stylesheet" href="{% static "overlayScrollbars/css/OverlayScrollbars.min.css" %}">
+  <link rel="stylesheet" href="{% static 'overlayScrollbars/css/OverlayScrollbars.min.css' %}">
   <!-- Daterange picker -->
-  <link rel="stylesheet" href="{% static "daterangepicker/daterangepicker.css" %}">
+  <link rel="stylesheet" href="{% static 'daterangepicker/daterangepicker.css' %}">
   <!-- summernote -->
-  <link rel="stylesheet" href="{% static "summernote/summernote-bs4.css" %}">
+  <link rel="stylesheet" href="{% static 'summernote/summernote-bs4.css' %}">
   <!-- Google Font: Source Sans Pro -->
   <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
 
-    {% comment %} For Custom CSS {% endcomment %}
+  <link rel="stylesheet" href="{% static 'dist/css/main.css' %}">
+
+  {% comment %} For Custom CSS {% endcomment %}
 
     {% block custom_css %}
     {% endblock custom_css %}
@@ -148,10 +151,79 @@
 <script src="{% static 'dist/js/pages/dashboard.js'  %}"></script>
 <!-- AdminLTE for demo purposes -->
 <script src="{% static 'dist/js/demo.js'  %}"></script>
+    <script src="{% static 'dist/js/main.js' %}"></script>
+
+<script src="{% static 'dist/js/locales-all.js'  %}"></script>
 
 {% comment %} For Custom JS {% endcomment %}
 {% block custom_js %}
 {% endblock custom_js %}
+<script>
 
+      document.addEventListener('DOMContentLoaded', function() {
+  var calendarEl = document.getElementById('calendar');
+
+  var calendar = new FullCalendar.Calendar(calendarEl, {
+    initialView: 'dayGridMonth',
+    initialDate: '2021-06-07',
+    headerToolbar: {
+      left: 'prev,next today',
+      center: 'title',
+      right: 'dayGridMonth,timeGridWeek,timeGridDay'
+    },
+    events: [
+      {
+        title: 'All Day Event',
+        start: '2021-06-01'
+      },
+      {
+        title: 'Long Event',
+        start: '2021-06-07',
+        end: '2021-06-10'
+      },
+      {
+        groupId: '999',
+        title: 'Repeating Event',
+        start: '2021-06-09T16:00:00'
+      },
+      {
+        groupId: '999',
+        title: 'Repeating Event',
+        start: '2021-06-16T16:00:00'
+      },
+      {
+        title: 'Conference',
+        start: '2021-06-11',
+        end: '2021-06-13'
+      },
+      {
+        title: 'Meeting',
+        start: '2021-06-12T10:30:00',
+        end: '2021-06-12T12:30:00'
+      },
+      {
+        title: 'Lunch',
+        start: '2021-06-12T12:00:00'
+      },
+      {
+        title: 'Meeting',
+        start: '2021-06-12T14:30:00'
+      },
+      {
+        title: 'Birthday Party',
+        start: '2021-06-13T07:00:00'
+      },
+      {
+        title: 'Click for Google',
+        url: 'http://google.com/',
+        start: '2021-06-28'
+      }
+    ]
+  });
+
+  calendar.render();
+});
+
+    </script>
 </body>
 </html>

@@ -1,10 +1,195 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>$Title$</title>
-</head>
-<body>
-$END$
-</body>
-</html>
+{% extends 'student_template/base_template.html' %}
+{% block page_title %}
+    Đăng Kí Môn Học
+{% endblock page_title %}
+
+{% block main_content %}
+
+{% load static %}
+
+<section class="content">
+        <div class="container-fluid">
+
+            <div class="row">
+                <div class="col-md-12">
+                    <!-- general form elements -->
+                    <div class="card card-primary">
+                    <div class="card-header">
+                        <h5 class="card-title"style="font-size: large">Đăng Kí Học Phần</h5>
+                    </div>
+                    <!-- /.card-header -->
+
+                                {% comment %} Display Messages {% endcomment %}
+                                {% if messages %}
+                                <div class="form-group">
+                                <div class="col-12">
+                                    {% for message in messages %}
+                                    {% if message.tags == "error" %}
+                                        <div class="alert alert-danger alert-dismissible fade show" role="alert" style="margin-top: 10px;">
+                                        {{ message }}
+                                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                        </div>
+                                    {% elif message.tags == "success" %}
+                                        <div class="alert alert-success alert-dismissible fade show" role="alert" style="margin-top: 10px;">
+                                        {{ message }}
+                                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                        </div>
+                                    {% endif %}
+                                    {% endfor %}
+                                </div>
+                                </div>
+                                {% endif %}
+                        <div id="dvOrders">
+    <table id="sourcetable" class="display table-bordered table-striped custom " style="width:100%">
+        <thead class="table-primary">
+            <tr>
+                <th></th>
+                <th>Mã Môn Học</th>
+                <th>Tên Môn Học </th>
+                <th>Nhóm TH</th>
+                <th>Số TC</th>
+                <th>Mã Lớp</th>
+                <th>Sĩ Số</th>
+                 <th>Còn Lại</th>
+                <th>Thứ</th>
+                <th>Buổi</th>
+                 <th>Phòng</th>
+                <th>Ngày Bắt Đầu</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+             {% for row in subjects %}
+                <td> <input type="checkbox" name="check-tab1"></td>
+
+                <td>{{ row.id }}</td>
+                <td>{{ row.subject_name }}</td>
+                <td>61</td>
+                <td>{{row.so_tc}}</td>
+                  <td>System Architect</td>
+                <td>{{row.tongsvdk}}</td>
+
+                <td>Edinburgh</td>
+                <td>61</td>
+                <td>2011/04/25</td>
+                <td>$320,800</td>
+                <td>$320,800</td>
+
+            </tr>
+{% endfor %}
+
+        </tbody>
+
+    </table>
+
+</div>
+                        <!-- /.card-body -->
+
+
+
+
+
+
+                    <!-- /.card -->
+                    <form method="post" action="">
+                           {% csrf_token %}
+                <div class="row">
+                        <div class="col-md-12">
+                         <div class="card card-success">
+                        <div class="card-header">
+                            <h3 class="card-title" style="font-size: large">Danh Sách Các Môn Đã Chọn</h3>
+                        </div>
+
+                        <div class="card-body">
+                           <div class="table-responsive border-danger">
+                                <table id="destinationtable" class="table border-danger">
+                                    <thead class="thead-light">
+                                    <tr>
+                                         <th>Số TT</th>
+                                         <th>Mã MH</th>
+                                        <th>Tên MH</th>
+                                         <th>Nhóm TH</th>
+                                        <th>Số TC</th>
+                                        <th>Học Phí</th>
+                                         <th>Phải Đóng</th>
+                                         <th>Trạng Thái Môn Học</th>
+
+                                    </tr>
+                                    </thead>
+
+
+                                </table>
+                            </div>
+                        </div>
+                        <!-- /.card-body -->
+                    </div>
+                </div>
+            </div>
+
+                        <div class="card-footer">
+                        <button type="submit" class="btn btn-primary"><i class="far fa-save" style="color:yellow;"></i> Lưu Đăng Kí</button>
+                             <button type="submit" class="btn btn-danger"><i class="far fa-trash-alt"></i> Xoá</button>
+                        </div>
+                        </form>
+                </div>
+            </div>
+
+            </div>
+        </div><!-- /.container-fluid -->
+      </section>
+<style type="text/css">
+    table tr.hover td {
+cursor: pointer;
+background-color: rgba(30, 138, 228, 0.15);
+}
+table td {
+padding: 0 10px;
+line-height: 30px;
+background-color: inherit;
+color: #3c3c3c;
+}
+tr:nth-child(even) {
+background-color: #f0f0f0;
+}
+tr:nth-child(odd) {
+background-color:#fff;
+}
+tbody tr:hover, tbody td.hover {
+background-color: rgba(30, 138, 228, 0.15) !important;
+}
+td:hover {
+background-color: #fff !important;
+color: #1e8ae4;
+cursor: pointer;
+}
+tbody td.hover:hover {
+background-color: #fff !important;
+}
+table thead th {
+background-color: #f0f0f0 !important;
+}
+table thead th {
+padding: 20px 10px 20px 10px;
+font-weight: bold;
+color: #3c3c3c;
+vertical-align: top;
+text-align: left;
+}
+
+</style>
+<script>
+    $('table td').hover(
+
+function () {
+$('table td:nth-child(' + ($(this).index() + 1) + ')').addClass('hover');
+},
+
+function () {
+$('table td:nth-child(' + ($(this).index() + 1) + ')').removeClass('hover');
+});
+</script>
+  {% endblock main_content %}

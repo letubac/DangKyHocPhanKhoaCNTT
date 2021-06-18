@@ -1,4 +1,4 @@
-{% extends 'hod_template/base_template.html' %}
+{% extends 'staff_gv_template/base_template.html' %}
 
 {% block page_title %}
     Manage Session
@@ -11,7 +11,7 @@
 <section class="content">
         <div class="container-fluid">
 
-            <a class="btn btn-primary" href="{% url 'add_session' %}" role="button">+ Add Session</a> <br/>&nbsp;
+            <a class="btn btn-primary" href="{% url 'add_session_gv' %}" role="button">+ Add Session</a> <br/>&nbsp;
 
             {% if messages %}
                                 <div class="form-group">
@@ -72,8 +72,8 @@
                                 <td>{{ session_year.session_start_year }}</td>
                                 <td>{{ session_year.session_end_year }}</td>
                                 <td>
-                                    <a href="{% url 'edit_session' session_year.id %}" class="btn btn-success">Edit</a> 
-                                    <a href="{% url 'delete_session' session_year.id %}" class="btn btn-danger">Delete</a>
+                                    <a href="{% url 'edit_session_gv' session_year.id %}" class="btn btn-success">Edit</a>
+                                    <a href="{% url 'delete_session_gv' session_year.id %}" class="btn btn-danger">Delete</a>
                                 </td>
                                 </tr>
                                 {% endfor %}

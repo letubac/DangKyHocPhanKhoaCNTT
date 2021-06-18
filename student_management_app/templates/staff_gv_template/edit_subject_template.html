@@ -1,7 +1,7 @@
-{% extends 'hod_template/base_template.html' %}
+{% extends 'staff_gv_template/base_template.html' %}
 
 {% block page_title %}
-   <i class="far fa-save" style="color: red"></i> Chỉnh Sửa Môn Học | #ID : {{ subject.id }}
+    <i class="far fa-edit"></i> Sửa Môn Học
 {% endblock page_title %}
 
 {% block main_content %}
@@ -16,14 +16,14 @@
                     <!-- general form elements -->
                     <div class="card card-primary">
                     <div class="card-header">
-                        <h3 class="card-title"><i class="far fa-edit"></i> Thay Đổi Thông Tin Môn Học</h3>
+                        <h3 class="card-title">Thêm Môn Học</h3>
                     </div>
                     <!-- /.card-header -->
                     <!-- form start -->
-                    <form role="form" method="POST" action="{% url 'edit_subject_save' %}">
+                    <form role="form" method="POST" action="{% url 'add_subject_save_gv' %}">
                         {% csrf_token %}
 
-                        
+
                                 {% comment %} Display Messages {% endcomment %}
                                 {% if messages %}
                                 <div class="form-group">
@@ -48,19 +48,22 @@
                                 </div>
                                 </div>
                                 {% endif %}
-                            
+
 
                         <div class="card-body">
                             <div class="form-group">
                                 <label>Tên Môn Học </label>
-                                <input type="text" class="form-control" name="subject" value="{{ subject.subject_name }}">
+                                <input type="text" class="form-control" name="subject_name" placeholder="Nhập Môn Học">
                             </div>
-
+                        <div class="form-group">
+                                <label>Số Tín Chỉ </label>
+                                <input type="number" class="form-control" name="so_tc" placeholder="Nhập Số Tín Chỉ">
+                            </div>
                             <div class="form-group">
                                 <label>Ngành Học </label>
                                 <select class="form-control" name="course">
                                     {% for course in courses %}
-                                        <option value="{{ course.id }}" {% if course.id == subject.course_id.id %} selected {% endif %}>{{ course.course_name }}</option>
+                                        <option value="{{ course.id }}">{{ course.course_name }}</option>
                                     {% endfor %}
                                 </select>
                             </div>
@@ -69,26 +72,41 @@
                                 <label>Giảng Viên </label>
                                 <select class="form-control" name="staff">
                                     {% for staff in staffs %}
-                                        <option value="{{ staff.id }}" {% if staff.id == subject.staff_id.id %} selected {% endif %}>{{ staff.first_name }} {{ staff.last_name }}</option>
+                                        <option value="{{ staff.id }}">{{ staff.first_name }} {{ staff.last_name }}</option>
                                     {% endfor %}
                                 </select>
-                                
-                                <input type="hidden" name="subject_id" value="{{ subject.id }}" />
                             </div>
                          <div class="form-group">
-                                <label>Số TC </label>
-                                <input type="text" class="form-control" name="so_tc" value="{{ subject.so_tc }}">
+                                <label>TG Học </label>
+                                <select class="form-control" name="ID_time">
+                                    {% for t in time_subjects %}
+                                        <option value="{{ t.ID_time }}">Ngày Bắt Đầu :{{ t.start_day|date:'Y-m-d' }} | Ngày Kết Thúc: {{ t.end_day |date:'Y-m-d'}}</option>
+                                    {% endfor %}
+                                </select>
                             </div>
-                             <div class="form-group">
-                                <label>Số SV ĐK </label>
-                                <input type="text" class="form-control" name="tongsvdk" value="{{ subject.tongsvdk }}">
+                            <div class="form-group">
+                                <label>Niên Khoá  </label>
+                                <input type="number" class="form-control" name="nienkhoa" placeholder="Nhập Niên Khoá">
                             </div>
+                            <div class="form-group">
+                                <label>Mã Thực Hành </label>
+                                <select class="form-control" name="staff">
+                                    {% for th in thuchanhs %}
+                                        <option value="{{ th.MATH }}">{{ th.MATH }} | {{ th.soTietTH }}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label>Tổng SV ĐK </label>
+                                <input type="text" class="form-control" name="tongsvdk" placeholder="Nhập Số SV ĐK">
+                            </div>
+
                         </div>
+
                         <!-- /.card-body -->
 
                         <div class="card-footer">
-                        
-                        <button type="submit" class="btn btn-primary">Cập Nhật</button>
+                        <button type="submit" class="btn btn-primary">Thêm Môn Học</button>
                         </div>
                     </form>
                     </div>

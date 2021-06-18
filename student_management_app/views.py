@@ -4,7 +4,7 @@ from django.http import HttpResponseRedirect, HttpResponse
 from django.shortcuts import render, redirect
 from django.contrib import messages
 
-from student_management_app.EmailBackEnd import EmailBackEnd
+from .EmailBackEnd import EmailBackEnd
 
 
 def home(request):
@@ -35,6 +35,9 @@ def doLogin(request):
             elif user_type == '3':
                 # return HttpResponse("Student Login")
                 return redirect('student_home')
+            elif user_type == '4':
+                # return HttpResponse("Student Login")
+                return redirect('staff_gv_home')
             else:
                 messages.error(request, "Invalid Login!")
                 return redirect('login')

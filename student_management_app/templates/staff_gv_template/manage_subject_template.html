@@ -1,4 +1,4 @@
-{% extends 'hod_template/base_template.html' %}
+{% extends 'staff_gv_template/base_template.html' %}
 
 {% block page_title %}
    <i class="fas fa-tasks"></i> Quản Lí Môn Học
@@ -11,7 +11,7 @@
 <section class="content">
         <div class="container-fluid">
 
-            <a class="btn btn-primary" href="{% url 'add_subject' %}" role="button">+ Thêm Môn Học</a> <br/>&nbsp;
+            <a class="btn btn-primary" href="{% url 'add_subject_gv' %}" role="button">+ Thêm Môn Học</a> <br/>&nbsp;
 
             {% if messages %}
                                 <div class="form-group">
@@ -61,16 +61,16 @@
                                 <tr>
                                 <th><i class="fas fa-calculator"></i> Mã Môn Học</th>
                                 <th>Tên Môn Học</th>
-                                <th>Ngành Học</th>
-
+                                <th>Số Tín Chỉ</th>
                                 <th><i class="fas fa-chalkboard-teacher"></i> Giáo Viên Giảng Dạy </th>
+                                    <th>ID </th>
+                                    <th>Niên Khoá</th>
+                                    <th>Mã Thực Hành</th>
+                                    <th>Tổng SV Đăng Kí</th>
                                 <th><i class="fas fa-graduation-cap"></i> Được Tạo Lúc</th>
                                 <th><i class="far fa-edit"></i> Cập Nhật Lúc</th>
-
                                 <th>Thao Tác</th>
-                                     <th>Số Tín Chỉ</th>
-                                    <th>Tổng SV ĐK</th>
-                                    <th>Niên Khoá</th>
+
                                 </tr>
                             </thead>
                             <tbody>
@@ -84,8 +84,8 @@
                                 <td>{{ subject.created_at }}</td>
                                 <td>{{ subject.updated_at }}</td>
                                 <td>
-                                    <a href="{% url 'edit_subject' subject.id %}" class="btn btn-success">Sửa</a>
-                                    <a href="{% url 'delete_subject' subject.id %}" class="btn btn-danger">Xoá</a>
+                                    <a href="{% url 'edit_subject_gv' subject.id %}" class="btn btn-success">Sửa</a>
+                                    <a href="{% url 'delete_subject_gv' subject.id %}" class="btn btn-danger">Xoá</a>
                                 </td>
                                     <td>{{ subject.so_tc }}</td>
                                     <td>{{ subject.tongsvdk }}</td>

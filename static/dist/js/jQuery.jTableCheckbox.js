@@ -83,6 +83,8 @@
 
                         //-- show a tick --//
                         $('.jTable-ticks',this).html(options.showTickValue);
+                        // For each "selected" row of table1 ..
+
 
                     }else{
 

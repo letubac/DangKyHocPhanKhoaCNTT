@@ -2,7 +2,7 @@
 
 <aside class="main-sidebar sidebar-dark-primary elevation-4">
       <!-- Brand Logo -->
-      <a href="{% url 'staff_home' %}" class="brand-link">
+      <a href="{% url 'staff_gv_home' %}" class="brand-link">
      <img src="{% static 'dist/img/icon.png' %}" alt="AdminLTE Logo" class="brand-image img-circle elevation-3"
             style="opacity: .8">
         <span class="brand-text font-weight-light">HỌC VIỆN BƯU CHÍNH</span>
@@ -16,7 +16,7 @@
             <img src="{% static 'dist/img/user2-160x160.jpg' %}" class="img-circle elevation-2" alt="User Image">
           </div>
           <div class="info">
-            <a href="{% url 'staff_profile' %}" class="d-block">{{ user.first_name }} {{ user.last_name }}</a>
+            <a href="{% url 'staff_gv_profile' %}" class="d-block">{{ user.first_name }} {{ user.last_name }}</a>
           </div>
         </div>
 
@@ -27,39 +27,204 @@
                 with font-awesome or any other icon font library -->
             
             <li class="nav-item">
-              {% url 'staff_home' as staff_home %}
-              <a href="{{ staff_home }}" class="nav-link {% if request.path == staff_home %} active {% endif %}">
+              {% url 'staff_gv_home' as staff_gv_home %}
+              <a href="{{ staff_gv_home }}" class="nav-link {% if request.path == staff_gv_home %} active {% endif %}">
                 <i class="nav-icon fas fa-tachometer-alt"></i>
                 <p>
-                  Home
+                  Trang Chủ
                   {% comment %} <span class="right badge badge-danger">New</span> {% endcomment %}
                 </p>
               </a>
             </li>
+ <!-- Sidebar Menu -->
+      <nav class="mt-2">
+        <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+          <!-- Add icons to the links using the .nav-icon class
+               with font-awesome or any other icon font library -->
+          <li class="nav-item has-treeview {% if 'index' in segment %} menu-open {% endif %}">
+            <a href="#" class="nav-link {% if 'index' in segment %} active {% endif %}">
+               <i class="far fa-calendar-alt" style="color: red"></i>
+              <p>
+                Xếp Phòng Học
+                <i class="right fas fa-angle-left"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                {% url 'staff_feedback' as staff_feedback %}
+                <a href="{{ staff_feedback }}" class="nav-link {% if request.path == staff_feedback %} active {% endif %}">
+                <i class="fas fa-tasks"></i>
+                <p>
+                  Quản Lí Phòng Học
+                  {% comment %} <span class="right badge badge-danger">New</span> {% endcomment %}
+                </p>
+                </a>
+                </li>
+                <li class="nav-item">
+                {% url 'add_room' as add_room %}
+                <a href="{{ add_room }}" class="nav-link {% if request.path == add_room %} active {% endif %}">
+                <i class="far fa-plus-square"></i>
+                <p>
+                  Thêm Phòng Học
+                  {% comment %} <span class="right badge badge-danger">New</span> {% endcomment %}
+                </p>
+                </a>
+                </li>
 
-          <li class="nav-item">
-              {% url 'staff_feedback' as staff_feedback %}
-              <a href="{{ staff_feedback }}" class="nav-link {% if request.path == staff_feedback %} active {% endif %}">
-<i class="fas fa-university" style="color: green"></i>                <p>
-                 Xem Môn Dạy
+            </ul>
+          </li>
+          <nav class="mt-2">
+        <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+          <!-- Add icons to the links using the .nav-icon class
+               with font-awesome or any other icon font library -->
+          <li class="nav-item has-treeview {% if 'index' in segment %} menu-open {% endif %}">
+            <a href="#" class="nav-link {% if 'index' in segment %} active {% endif %}">
+               <i class="far fa-calendar-alt" style="color: red"></i>
+              <p>
+                Học Kì
+                <i class="right fas fa-angle-left"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                {% url 'manage_session_gv' as manage_session_gv %}
+                <a href="{{ manage_session_gv }}" class="nav-link {% if request.path == manage_session_gv %} active {% endif %}">
+                <i class="fas fa-tasks"></i>
+                <p>
+                  Quản Lí Học Kì
                   {% comment %} <span class="right badge badge-danger">New</span> {% endcomment %}
                 </p>
-              </a>
-            </li>
-            <li class="nav-item">
+                </a>
+                </li>
+                <li class="nav-item">
+                {% url 'manage_time_study' as manage_time_study %}
+                <a href="{{ manage_time_study }}" class="nav-link {% if request.path == manage_time_study %} active {% endif %}">
+                <i class="far fa-plus-square"></i>
+                <p>
+                  Thời Gian Học
+                  {% comment %} <span class="right badge badge-danger">New</span> {% endcomment %}
+                </p>
+                </a>
+                </li>
+
+            </ul>
+          </li>
+      <nav class="mt-2">
+        <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+          <!-- Add icons to the links using the .nav-icon class
+               with font-awesome or any other icon font library -->
+          <li class="nav-item has-treeview {% if 'index' in segment %} menu-open {% endif %}">
+            <a href="#" class="nav-link {% if 'index' in segment %} active {% endif %}">
+               <i class="far fa-calendar-alt" style="color: red"></i>
+              <p>
+               Quản Lí Môn Học
+                <i class="right fas fa-angle-left"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                {% url 'add_subject_gv' as add_subject_gv %}
+                <a href="{{ add_subject_gv }}" class="nav-link {% if request.path == add_subject_gv %} active {% endif %}">
+                <i class="fas fa-tasks"></i>
+                <p>
+                  Thêm Môn Học
+                  {% comment %} <span class="right badge badge-danger">New</span> {% endcomment %}
+                </p>
+                </a>
+                </li>
+                <li class="nav-item">
+                {% url 'manage_subject_gv' as manage_subject_gv %}
+                <a href="{{ manage_subject_gv }}" class="nav-link {% if request.path == manage_subject_gv %} active {% endif %}">
+                <i class="far fa-plus-square"></i>
+                <p>
+                  Quản Lí Môn Học
+                  {% comment %} <span class="right badge badge-danger">New</span> {% endcomment %}
+                </p>
+                </a>
+                </li>
+                <li class="nav-item">
+                {% url 'manage_thuchanh_gv' as manage_thuchanh_gv %}
+                <a href="{{ manage_thuchanh_gv }}" class="nav-link {% if request.path == manage_thuchanh_gv %} active {% endif %}">
+                <i class="far fa-plus-square"></i>
+                <p>
+                  Quản Lí Thực Hành
+                  {% comment %} <span class="right badge badge-danger">New</span> {% endcomment %}
+                </p>
+                </a>
+                </li>
+              <li class="nav-item">
+                {% url 'manage_nhomTH_gv' as manage_nhomTH_gv %}
+                <a href="{{ manage_nhomTH_gv }}" class="nav-link {% if request.path == manage_nhomTH_gv %} active {% endif %}">
+                <i class="far fa-plus-square"></i>
+                <p>
+                  Quản Lí Nhóm Thực Hành
+                  {% comment %} <span class="right badge badge-danger">New</span> {% endcomment %}
+                </p>
+                </a>
+                </li>
+              <li class="nav-item">
+                {% url 'manage_time_study' as manage_time_study %}
+                <a href="{{ manage_time_study }}" class="nav-link {% if request.path == manage_time_study %} active {% endif %}">
+                <i class="far fa-plus-square"></i>
+                <p>
+                  Quản Lí Giá Môn Học
+                  {% comment %} <span class="right badge badge-danger">New</span> {% endcomment %}
+                </p>
+                </a>
+                </li>
+            </ul>
+          </li>
+           <nav class="mt-2">
+        <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+          <!-- Add icons to the links using the .nav-icon class
+               with font-awesome or any other icon font library -->
+          <li class="nav-item has-treeview {% if 'index' in segment %} menu-open {% endif %}">
+            <a href="#" class="nav-link {% if 'index' in segment %} active {% endif %}">
+               <i class="far fa-calendar-alt" style="color: red"></i>
+              <p>
+                Xếp Lịch Dạy Giảng Viên
+                <i class="right fas fa-angle-left"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                {% url 'staff_feedback' as staff_feedback %}
+                <a href="{{ staff_feedback }}" class="nav-link {% if request.path == staff_feedback %} active {% endif %}">
+                <i class="fas fa-tasks"></i>
+                <p>
+                  Phân Lịch Dạy
+                  {% comment %} <span class="right badge badge-danger">New</span> {% endcomment %}
+                </p>
+                </a>
+                </li>
+              <li class="nav-item">
+                {% url 'staff_feedback' as staff_feedback %}
+                <a href="{{ staff_feedback }}" class="nav-link {% if request.path == staff_feedback %} active {% endif %}">
+                <i class="fas fa-tasks"></i>
+                <p>
+                  Tổng Môn Dạy
+                  {% comment %} <span class="right badge badge-danger">New</span> {% endcomment %}
+                </p>
+                </a>
+                </li>
+            </ul>
+          </li>
+
+              <li class="nav-item">
               {% url 'staff_feedback' as staff_feedback %}
               <a href="{{ staff_feedback }}" class="nav-link {% if request.path == staff_feedback %} active {% endif %}">
                <i class="far fa-calendar-alt" style="color: red"></i>
                 <p>
-                  Thời Khoá Biểu
+                 Xác Nhận Đăng Kí HP
                   {% comment %} <span class="right badge badge-danger">New</span> {% endcomment %}
                 </p>
               </a>
             </li>
 
+
             <li class="nav-item">
-              {% url 'staff_feedback' as staff_feedback %}
-              <a href="{{ staff_feedback }}" class="nav-link {% if request.path == staff_feedback %} active {% endif %}">
+              {% url 'staff_gv_feedback' as staff_gv_feedback %}
+              <a href="{{ staff_gv_feedback }}" class="nav-link {% if request.path == staff_gv_feedback %} active {% endif %}">
                 <i class="nav-icon fas fa-comments"></i>
                 <p>
                   Phản Hồi

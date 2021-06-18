@@ -1,7 +1,7 @@
 {% extends 'hod_template/base_template.html' %}
 
 {% block page_title %}
-    <i class="fas fa-chalkboard-teacher"></i> Quản Lí Giảng Viên
+    Quản Lí Giảng Viên
 {% endblock page_title %}
 
 {% block main_content %}
@@ -11,7 +11,7 @@
 <section class="content">
         <div class="container-fluid">
 
-            <a class="btn btn-outline-primary" href="{% url 'add_staff' %}" role="button">+ Thêm Giảng Viên</a> <br/>&nbsp;
+            <a class="btn btn-primary" href="{% url 'add_staff' %}" role="button">+ Thêm Giảng Viên</a> <br/>&nbsp;
 
             {% if messages %}
                                 <div class="form-group">
@@ -36,7 +36,6 @@
                                 </div>
                                 </div>
                                 {% endif %}
-                                
 
             <div class="row">
 
@@ -44,11 +43,11 @@
                     <!-- general form elements -->
                     <div class="card">
                         <div class="card-header">
-                            <h3 class="card-title"><i class="fas fa-info-circle"></i> Thông Tin Chi Tiết Giảng Viên</h3>
+                            <h3 class="card-title">Chi Tiết Giảng Viên</h3>
 
                             <div class="card-tools">
                             <div class="input-group input-group-sm" style="width: 150px;">
-                                <input type="text" name="table_search" class="form-control float-right" placeholder="Search">
+                                <input type="text" name="table_search" class="form-control float-right" placeholder="Tìm Kiếm">
 
                                 <div class="input-group-append">
                                 <button type="submit" class="btn btn-default"><i class="fas fa-search"></i></button>
@@ -61,17 +60,17 @@
                             <table class="table table-hover text-nowrap">
                             <thead>
                                 <tr>
-                                <th>ID</th>
+                                <th>Mã Giảng Viên</th>
                                 <th>Tên</th>
                                 <th>Họ</th>
                                 <th>Tài Khoản</th>
                                 <th>Email</th>
                                 <th>Địa Chỉ</th>
+                                <th>Gender</th>
+                                <th>Profile Pic</th>
                                      <th>Ngày Sinh</th>
-
-                                <th>TG Đăng Nhập Cuối</th>
-                                <th>TG Đăng Kí</th>
-
+                                <th>Last Login</th>
+                                <th>Date Joined</th>
                                 <th>Thao Tác</th>
                                 </tr>
                             </thead>
@@ -84,17 +83,18 @@
                                 <td>{{ staff.admin.username }}</td>
                                 <td>{{ staff.admin.email }}</td>
                                 <td>{{ staff.address }}</td>
-                                    <td>{{ staff.birthday }}</td>
+                                <td>{{ staff.gender }}</td>
+                                <td> <img src="{{ staff.profile_pic }}" style="width: 100px;" /> </td>
+                                <td>{{ staff.birthday }}</td>
                                 <td>{{ staff.admin.last_login }}</td>
                                 <td>{{ staff.admin.date_joined }}</td>
-
                                 <td>
-                                    <a href="{% url 'edit_staff' staff.admin.id %}" class="btn btn-success">Sửa</a>
-                                    <a href="{% url 'delete_staff' staff.admin.id %}" class="btn btn-danger">Xoá</a>
+                                    <a href="{% url 'edit_staff_gv' staff.admin.id %}" class="btn btn-success">Sửa</a>
+                                    <a href="{% url 'delete_staff_gv' staff.admin.id %}" class="btn btn-danger">Xoá</a>
                                 </td>
                                 </tr>
                                 {% endfor %}
-                                
+
                             </tbody>
                             </table>
                         </div>

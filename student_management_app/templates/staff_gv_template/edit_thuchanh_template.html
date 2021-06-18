@@ -1,7 +1,7 @@
-{% extends 'hod_template/base_template.html' %}
+{% extends 'staff_gv_template/base_template.html' %}
 
 {% block page_title %}
-    <i class="fas fa-fan"></i> Thêm Môn Học
+    Sửa Thông Tin Thực Hành
 {% endblock page_title %}
 
 {% block main_content %}
@@ -16,11 +16,11 @@
                     <!-- general form elements -->
                     <div class="card card-primary">
                     <div class="card-header">
-                        <h3 class="card-title">Thêm Môn Học</h3>
+                        <h3 class="card-title">Sửa Thông Tin</h3>
                     </div>
                     <!-- /.card-header -->
                     <!-- form start -->
-                    <form role="form" method="POST" action="{% url 'add_subject_save' %}">
+                    <form role="form" method="POST" action="{% url 'edit_thuchanh_save' %}">
                         {% csrf_token %}
 
                         
@@ -52,55 +52,22 @@
 
                         <div class="card-body">
                             <div class="form-group">
-                                <label>Môn Học </label>
-                                <input type="text" class="form-control" name="subject" placeholder="Nhập Môn Học">
+                                <label>Mã Thực Hành</label>
+                                <input type="text" class="form-control" name="MATH1" value="{{ thuchanh.MATH}}" disabled>
                             </div>
 
                             <div class="form-group">
-                                <label>Ngành Học </label>
-                                <select class="form-control" name="course">
-                                    {% for course in courses %}
-                                        <option value="{{ course.id }}">{{ course.course_name }}</option>
-                                    {% endfor %}
-                                </select>
+                                <label>Số Tiết Thực hành </label>
+                                <input type="number" class="form-control" name="soTietTH" value="{{ thuchanh.soTietTH }}">
                             </div>
 
-                            <div class="form-group">
-                                <label>Giảng Viên </label>
-                                <select class="form-control" name="staff">
-                                    {% for staff in staffs %}
-                                        <option value="{{ staff.id }}">{{ staff.first_name }} {{ staff.last_name }}</option>
-                                    {% endfor %}
-                                </select>
-                            </div>
-
-                            <div class="form-group">
-                                <label>Số Tín Chỉ </label>
-                                <input type="text" class="form-control" name="so_tc" placeholder="Nhập Số Tín Chỉ">
-                            </div>
-
-                            <div class="form-group">
-                                <label>Tổng SV ĐK </label>
-                                <input type="text" class="form-control" name="tongsvdk" placeholder="Nhập Số SV ĐK">
-                            </div>
-                            <div class="form-group">
-                                <label>Niên Khoá</label>
-                                <input type="text" class="form-control" name="nienkhoa" placeholder="Nhập Niên Khoá">
-                            </div>
-                             <div class="form-group">
-                                <label>TG Học</label>
-                                <input type="text" class="form-control" name="nienkhoa" placeholder="Thời Gian Học">
-                            </div>
-                             <div class="form-group">
-                                <label>Thực Hành</label>
-                                <input type="text" class="form-control" name="nienkhoa" placeholder="Thời Gian Học">
-                            </div>
                         </div>
-
                         <!-- /.card-body -->
 
                         <div class="card-footer">
-                        <button type="submit" class="btn btn-primary">Thêm Môn Học</button>
+                            <input type="hidden" name="MATH" value="{{ thuchanh.MATH }}" />
+
+                        <button type="submit" class="btn btn-primary">Cập Nhật</button>
                         </div>
                     </form>
                     </div>

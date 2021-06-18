@@ -1,15 +1,18 @@
-{% load static %}
 
 <!DOCTYPE html>
+{% load static %}
+
 <html>
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>Student Management System | Staff Dashboard</title>
+  <title>Phòng Giáo Vụ Đăng Kí Học Phần</title>
   <!-- Tell the browser to be responsive to screen width -->
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <!-- Font Awesome -->
   <link rel="stylesheet" href="{% static "fontawesome-free/css/all.min.css" %}">
+    <link rel="icon" href="/static/assets/favicon.ico" type="image/x-icon">
+
   <!-- Ionicons -->
   <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
   <!-- Tempusdominus Bbootstrap 4 -->
@@ -59,7 +62,7 @@
         </a>
         <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right" style="left: inherit; right: 0px;">
           
-          <a href="{% url 'staff_profile' %}" class="dropdown-item">
+          <a href="{% url 'staff_gv_profile' %}" class="dropdown-item">
             <i class="fas fa-user-edit mr-2"></i> Update Profile
           </a>
           
@@ -76,7 +79,7 @@
     <!-- /.navbar -->
 
     <!-- Main Sidebar Container -->
-    {% include 'staff_template/sidebar_template.html' with user=user id=id %}
+    {% include 'staff_gv_template/sidebar_template.html' with user=user id=id %}
 
     <!-- Content Wrapper. Contains page content -->
     <div class="content-wrapper">
@@ -107,7 +110,7 @@
       <!-- /.content -->
     </div>
     <!-- /.content-wrapper -->
-    {% include 'staff_template/footer.html' %}
+    {% include 'staff_gv_template/footer.html' %}
 
     
   </div>

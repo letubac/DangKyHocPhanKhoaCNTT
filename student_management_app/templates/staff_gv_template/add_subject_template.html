@@ -1,4 +1,4 @@
-{% extends 'hod_template/base_template.html' %}
+{% extends 'staff_gv_template/base_template.html' %}
 
 {% block page_title %}
     <i class="fas fa-fan"></i> Thêm Môn Học
@@ -20,7 +20,7 @@
                     </div>
                     <!-- /.card-header -->
                     <!-- form start -->
-                    <form role="form" method="POST" action="{% url 'add_subject_save' %}">
+                    <form role="form" method="POST" action="{% url 'add_subject_save_gv' %}">
                         {% csrf_token %}
 
                         
@@ -52,8 +52,8 @@
 
                         <div class="card-body">
                             <div class="form-group">
-                                <label>Môn Học </label>
-                                <input type="text" class="form-control" name="subject" placeholder="Nhập Môn Học">
+                                <label>Tên Môn Học </label>
+                                <input type="text" class="form-control" name="subject_name" placeholder="Nhập Môn Học">
                             </div>
 
                             <div class="form-group">
@@ -73,28 +73,37 @@
                                     {% endfor %}
                                 </select>
                             </div>
-
-                            <div class="form-group">
+                             <div class="form-group">
                                 <label>Số Tín Chỉ </label>
-                                <input type="text" class="form-control" name="so_tc" placeholder="Nhập Số Tín Chỉ">
+                                <input type="number" class="form-control" name="so_tc" placeholder="Nhập Số Tín Chỉ">
                             </div>
-
-                            <div class="form-group">
+                             <div class="form-group">
                                 <label>Tổng SV ĐK </label>
                                 <input type="text" class="form-control" name="tongsvdk" placeholder="Nhập Số SV ĐK">
                             </div>
+                             <div class="form-group">
+                                <label>Niên Khoá  </label>
+                                <input type="number" class="form-control" name="nienkhoa" placeholder="Nhập Niên Khoá">
+                            </div>
+                         <div class="form-group">
+                                <label>TG Học </label>
+                                <select class="form-control" name="ID_time">
+                                    {% for t in time_subjects %}
+                                        <option value="{{ t.ID_time }}">Ngày Bắt Đầu :{{ t.start_day|date:'Y-m-d' }} | Ngày Kết Thúc: {{ t.end_day |date:'Y-m-d'}}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+
                             <div class="form-group">
-                                <label>Niên Khoá</label>
-                                <input type="text" class="form-control" name="nienkhoa" placeholder="Nhập Niên Khoá">
+                                <label>Mã Thực Hành </label>
+                                <select class="form-control" name="MATH">
+                                    {% for th in thuchanhs %}
+                                        <option value="{{ th.MATH }}">{{ th.MATH }} | {{ th.soTietTH }}</option>
+                                    {% endfor %}
+                                </select>
                             </div>
-                             <div class="form-group">
-                                <label>TG Học</label>
-                                <input type="text" class="form-control" name="nienkhoa" placeholder="Thời Gian Học">
-                            </div>
-                             <div class="form-group">
-                                <label>Thực Hành</label>
-                                <input type="text" class="form-control" name="nienkhoa" placeholder="Thời Gian Học">
-                            </div>
+
+
                         </div>
 
                         <!-- /.card-body -->

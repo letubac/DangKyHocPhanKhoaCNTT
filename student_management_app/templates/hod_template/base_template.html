@@ -1,6 +1,7 @@
-{% load static %}
 
 <!DOCTYPE html>
+{% load static %}
+
 <html>
 <head>
   <meta charset="utf-8">
@@ -15,7 +16,7 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>
 
   <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
-  <!-- Tempusdominus Bbootstrap 4 -->
+  <!-- Tempusdominus Bbootstrap 5 -->
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js" integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0" crossorigin="anonymous"></script>  <!-- iCheck -->
   <link rel="stylesheet" href="{% static 'icheck-bootstrap/icheck-bootstrap.min.css' %}">
@@ -145,7 +146,8 @@
             </div><!-- /.col -->
             <div class="col-sm-6">
               <ol class="breadcrumb float-sm-right">
-                <li class="breadcrumb-item"><a href="{% url 'admin_home' %}">Trang Chủ</a></li>
+                <li class="breadcrumb-item"><a href="{% url 'admin_home' %}"><i class="fas fa-home" style="color: red;width: auto"></i> Trang Chủ</a><img
+                        src="../../../static/dist/img/topTen.gif" height="17" width="17"/></li>
               </ol>
             </div><!-- /.col -->
           </div><!-- /.row -->

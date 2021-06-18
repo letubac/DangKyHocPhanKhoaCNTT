@@ -1,10 +1,36 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>$Title$</title>
-</head>
-<body>
-$END$
-</body>
-</html>
+{% extends 'hod_template/base_template.html' %}
+
+{% block page_title %}
+    Cập Nhật Thông Tin Nhân Viên | Tài Khoản: {{ username }} | #ID : {{ id }}
+{% endblock page_title %}
+
+{% block main_content %}
+
+{% load static %}
+
+<section class="content">
+        <div class="container-fluid">
+
+            <div class="row">
+                <div class="col-md-12">
+                    <!-- general form elements -->
+                    <div class="card card-primary">
+                    <div class="card-header">
+                        <h3 class="card-title">Edit Student</h3>
+                    </div>
+                    <!-- /.card-header -->
+                    <!-- form start -->
+                    {% comment %} Displaying the Django Form using forms.py EditStudentForm {% endcomment %}
+                    {% url 'edit_staff_gv_save' as action_path %}
+                    {% include 'hod_template/form_template.html' with messages=messages form=form action_path=action_path button_text="Cập Nhật" %}
+
+                    </div>
+                    <!-- /.card -->
+
+                </div>
+            </div>
+
+        </div><!-- /.container-fluid -->
+      </section>
+
+  {% endblock main_content %}

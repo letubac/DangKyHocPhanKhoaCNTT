@@ -1,7 +1,7 @@
 {% extends 'hod_template/base_template.html' %}
 
 {% block page_title %}
-    Thêm Sinh Viên
+    Add Student
 {% endblock page_title %}
 
 {% block main_content %}
@@ -16,7 +16,7 @@
                     <!-- general form elements -->
                     <div class="card card-primary">
                     <div class="card-header">
-                        <h3 class="card-title"><i class="fas fa-user-plus"></i>Thêm</h3>
+                        <h3 class="card-title">Add Student</h3>
                     </div>
                     <!-- /.card-header -->
                     <!-- form start -->
@@ -69,12 +69,12 @@
                 else{
                     $(".email_error").remove();
                 }
-                
+
             })
 
             $("#id_username").keyup(function(){
                 var username = $(this).val();
-                
+
                 if(username!=""){
                     $.ajax({
                         url : '{% url 'check_username_exist' %}',
@@ -86,11 +86,11 @@
 
                         if(response == "True"){
                             $(".username_error").remove();
-                            $("<span class='username_error' style='color: red; padding: 5px; font-weight: bold;'> Tài Khoản Đã Tồn Tại. </span>").insertAfter("#id_username")
+                            $("<span class='username_error' style='color: red; padding: 5px; font-weight: bold;'> Username Not Available. </span>").insertAfter("#id_username")
                         }
                         else{
                             $(".username_error").remove();
-                            $("<span class='username_error' style='color: green; padding: 5px; font-weight: bold;'> Tài Khoản Hợp Lệ. </span>").insertAfter("#id_username")
+                            $("<span class='username_error' style='color: green; padding: 5px; font-weight: bold;'> Username Available. </span>").insertAfter("#id_username")
                         }
                     })
 

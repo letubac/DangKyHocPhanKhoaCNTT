@@ -1,7 +1,7 @@
 {% extends 'staff_gv_template/base_template.html' %}
 
 {% block page_title %}
-    Quản Lí TG Học
+    Quản Lí Thực Hành
 {% endblock page_title %}
 
 {% block main_content %}
@@ -11,7 +11,7 @@
 <section class="content">
         <div class="container-fluid">
 
-            <a class="btn btn-primary" href="{% url 'add_time_study_gv' %}" role="button">+ Thêm TG Học</a> <br/>&nbsp;
+            <a class="btn btn-primary" href="{% url 'add_thuchanh_gv' %}" role="button">+ Thêm Thực Hành</a> <br/>&nbsp;
 
             {% if messages %}
                                 <div class="form-group">
@@ -42,7 +42,7 @@
                     <!-- general form elements -->
                     <div class="card">
                         <div class="card-header">
-                            <h3 class="card-title">Chi Tiết Thời Gian Học</h3>
+                            <h3 class="card-title">Chi Tiết</h3>
 
                             <div class="card-tools">
                             <div class="input-group input-group-sm" style="width: 150px;">
@@ -59,23 +59,20 @@
                             <table class="table table-hover text-nowrap">
                             <thead>
                                 <tr>
-                                <th>ID</th>
-                                <th>Ngày Bắt Đầu Học</th>
-                                <th>Ngày Kết Thúc Học</th>
-                                <th>Mã Học Kì</th>
-                                    <th>Thao Tác</th>
+                                <th>Mã Thực Hành</th>
+                                <th>Số Tiết Thực Hành</th>
+
                                 </tr>
                             </thead>
                             <tbody>
-                                {% for session_year in session_years %}
+                                {% for th in thuchanh %}
                                 <tr>
-                                <td>{{ session_year.ID_time }}</td>
-                                <td>{{ session_year.start_day }}</td>
-                                <td>{{ session_year.end_day }}</td>
-                                    <td>{{ session_year.Mahocki.id }}</td>
+                                <td>{{ th.MATH }}</td>
+                                <td>{{ th.soTietTH }}</td>
+
                                 <td>
-                                    <a href="{% url 'edit_time_study' session_year.ID_time %}" class="btn btn-success">Edit</a>
-                                    <a href="{% url 'delete_time_study' session_year.ID_time %}" class="btn btn-danger">Delete</a>
+                                    <a href="{% url 'edit_thuchanh_study' th.MATH %}" class="btn btn-success">Edit</a>
+                                    <a href="{% url 'delete_thuchanh_study' th.MATH %}" class="btn btn-danger">Delete</a>
                                 </td>
                                 </tr>
                                 {% endfor %}

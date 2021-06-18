@@ -1,10 +1,141 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>$Title$</title>
-</head>
-<body>
-$END$
-</body>
-</html>
+{% extends 'student_template/base_template.html' %}
+
+{% block page_title %}
+   <i class="fas fa-house-damage" style="color: red"></i> Chương Trình Đào Tạo
+{% endblock page_title %}
+
+{% block main_content %}
+
+{% load static %}
+<section class="content">
+        <div class="container-fluid">
+
+            <div class="row">
+                <div class="col-md-12">
+                    <!-- general form elements -->
+                    <div class="card ">
+                    <div class="card-header ">
+
+                     <div class="row">
+                        <div class="col-md-2">
+                           <img src="../../../static/dist/img/diploma.jpg" height="100" width="100"/>
+                        </div>
+                    <div class="col-md-8">
+                       <h3 class="card-title pt-5" style="font-size: large;">XEM CHƯƠNG TRÌNH ĐÀO TẠO KHỐI LỚP Học kỳ 3 - Năm học 2020-2021</h3>
+                    </div>
+
+                         </div>
+
+                    </div>
+                    <!-- /.card-header -->
+
+
+
+
+                    </div>
+                    <!-- /.card -->
+
+
+
+                </div>
+            </div>
+
+<table id="example" class="display" style="width:100%">
+                   <thead class="bg-primary">
+            <tr>
+                <th>STT</th>
+                <th>Mã MH</th>
+                <th>Tên MH</th>
+                <th>Số TC</th>
+                <th>Năm</th>
+                <th>Học Kì</th>
+                <th>Đã Học</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>1</td>
+                <td>BAS1105-7</td>
+                <td>Giáo Dục Thể Chất</td>
+                <td>3</td>
+                <td>2018</td>
+                <td>1</td>
+                <td><i class="far fa-check-circle" style="color: red"></i></td>
+            </tr>
+            <tr>
+                <td>2</td>
+                <td>INT1154</td>
+                <td>Tin Cơ Sở 1</td>
+                <td>3</td>
+                <td>2018</td>
+                <td>1</td>
+                <td><i class="far fa-check-circle" style="color: red"></i></td>
+            </tr>
+            <tr>
+                <td>3</td>
+                <td>BAS1106</td>
+                <td>Giáo Dục Quốc Phòng An Ninh</td>
+                <td>3</td>
+                <td>2018</td>
+                <td>1</td>
+                <td><i class="far fa-check-circle" style="color: red"></i></td>
+            </tr>
+                           </tbody>
+
+    </table>
+
+        </div><!-- /.container-fluid -->
+      </section>
+<style type="text/css">
+    table tr.hover td {
+cursor: pointer;
+background-color: rgba(30, 138, 228, 0.15);
+}
+table td {
+padding: 0 10px;
+line-height: 30px;
+background-color: inherit;
+color: #3c3c3c;
+}
+tr:nth-child(even) {
+background-color: #f0f0f0;
+}
+tr:nth-child(odd) {
+background-color:#fff;
+}
+tbody tr:hover, tbody td.hover {
+background-color: rgba(30, 138, 228, 0.15) !important;
+}
+td:hover {
+background-color: #fff !important;
+color: #1e8ae4;
+cursor: pointer;
+}
+tbody td.hover:hover {
+background-color: #fff !important;
+}
+table thead th {
+background-color: #f0f0f0 !important;
+}
+table thead th {
+padding: 20px 10px 20px 10px;
+font-weight: bold;
+color: #3c3c3c;
+vertical-align: top;
+text-align: left;
+}
+
+</style>
+<script>
+    $('table td').hover(
+
+function () {
+$('table td:nth-child(' + ($(this).index() + 1) + ')').addClass('hover');
+},
+
+function () {
+$('table td:nth-child(' + ($(this).index() + 1) + ')').removeClass('hover');
+});
+</script>
+  {% endblock main_content %}
+

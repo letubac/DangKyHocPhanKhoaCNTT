@@ -3,9 +3,9 @@
 <aside class="main-sidebar sidebar-dark-primary elevation-4">
       <!-- Brand Logo -->
       <a href="{% url 'student_home' %}" class="brand-link">
-        <img src="{% static 'dist/img/AdminLTELogo.png' %}" alt="AdminLTE Logo" class="brand-image img-circle elevation-3"
+        <img src="{% static 'dist/img/icon.png' %}" alt="AdminLTE Logo" class="brand-image img-circle elevation-3"
             style="opacity: .8">
-        <span class="brand-text font-weight-light">Open university</span>
+        <span class="brand-text font-weight-light">HỌC VIỆN BƯU CHÍNH</span>
       </a>
 
       <!-- Sidebar -->
@@ -25,61 +25,67 @@
           <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
             <!-- Add icons to the links using the .nav-icon class
                 with font-awesome or any other icon font library -->
-            
+        <!--
             <li class="nav-item">
               {% url 'student_home' as student_home %}
               <a href="{{ student_home }}" class="nav-link {% if request.path == student_home %} active {% endif %}">
-                <i class="nav-icon fas fa-tachometer-alt"></i>
+                <i class="nav-icon fas fa-tachometer-alt" style="color: red"></i>
                 <p>
-                  Home
+                  Trang Chủ
                   {% comment %} <span class="right badge badge-danger">New</span> {% endcomment %}
                 </p>
               </a>
             </li>
-
-            <li class="nav-item">
-              {% url 'student_view_attendance' as student_view_attendance %}
-              <a href="{{ student_view_attendance }}" class="nav-link {% if request.path == student_view_attendance %} active {% endif %}">
-                <i class="nav-icon fas fa-calendar-alt"></i>
-                <p>
-                  View Attendance
-                  {% comment %} <span class="right badge badge-danger">New</span> {% endcomment %}
-                </p>
-              </a>
-            </li>
-
-            <li class="nav-item">
-              {% url 'student_view_result' as student_view_result %}
-              <a href="{{ student_view_result }}" class="nav-link {% if request.path == student_view_result %} active {% endif %}">
-                <i class="nav-icon fas fa-tasks"></i>
-                <p>
-                  View Result
-                  {% comment %} <span class="right badge badge-danger">New</span> {% endcomment %}
-                </p>
-              </a>
-            </li>
-
-            <li class="nav-item">
-              {% url 'student_apply_leave' as student_apply_leave %}
-              <a href="{{ student_apply_leave }}" class="nav-link {% if request.path == student_apply_leave %} active {% endif %}">
-                <i class="nav-icon fas fa-envelope-open-text"></i>
-                <p>
-                  Apply for Leave
-                  {% comment %} <span class="right badge badge-danger">New</span> {% endcomment %}
-                </p>
-              </a>
-            </li>
-
+-->
             <li class="nav-item">
               {% url 'student_feedback' as student_feedback %}
               <a href="{{ student_feedback }}" class="nav-link {% if request.path == student_feedback %} active {% endif %}">
                 <i class="nav-icon fas fa-comments"></i>
                 <p>
-                  Send Feedback
+                  Gửi Phản Hồi
                   {% comment %} <span class="right badge badge-danger">New</span> {% endcomment %}
                 </p>
               </a>
             </li>
+            <!--Đăng Kí Môn Học-->
+            <li class="nav-item">
+              {% url 'student_register_course' as student_register_course %}
+              <a href="{{ student_register_course }}" class="nav-link {% if request.path == student_register_course %} active {% endif %}">
+
+                <p>
+                 <span class="far fa-registered" style="color: red"></span> Đăng Kí Môn Học
+                  {% comment %} <span class="right badge badge-danger">New</span> {% endcomment %}
+                </p>
+              </a>
+            </li>
+            <!--In ra thời khoá biểu-->
+              <li class="nav-item">
+              {% url 'student_view_timetable' as student_view_timetable %}
+              <a href="{{ student_view_timetable }}" class="nav-link {% if request.path == student_view_timetable %} active {% endif %}">
+
+                <p>
+                 <span class="far fa-calendar-alt" style="color: yellow"></span> Thời Khoá Biểu
+                  {% comment %} <span class="right badge badge-danger">New</span> {% endcomment %}
+                </p>
+              </a>
+            </li>
+        <!--In ra ct dao tao-->
+              <li class="nav-item">
+              {% url 'student_view_diploma' as student_view_diploma %}
+              <a href="{{ student_view_diploma }}" class="nav-link {% if request.path == student_view_diploma %} active {% endif %}">
+
+                <p>
+                 <span class="fas fa-university" style="color:greenyellow"></span> CT Đào Tạo
+                  {% comment %} <span class="right badge badge-danger" >New</span> {% endcomment %}
+                </p>
+              </a>
+            </li>
+
+
+
+
+
+
 
           </ul>
         </nav>

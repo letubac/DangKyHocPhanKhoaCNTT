@@ -1,7 +1,7 @@
-{% extends 'staff_template/base_template.html' %}
+{% extends 'staff_gv_template/base_template.html' %}
 
 {% block page_title %}
-    Update Profile
+    Cập Nhật Thông Tin
 {% endblock page_title %}
 
 {% block main_content %}
@@ -20,7 +20,7 @@
                     </div>
                     <!-- /.card-header -->
                     <!-- form start -->
-                    <form role="form" method="POST" action="{% url 'staff_profile_update' %}">
+                    <form role="form" method="POST" action="{% url 'staff_gv_profile_update' %}">
                         {% csrf_token %}
 
                         

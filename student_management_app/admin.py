@@ -1,6 +1,6 @@
 from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin
-from .models import CustomUser, AdminHOD, Staffs, Courses, Subjects, Students, Attendance, AttendanceReport, LeaveReportStudent, LeaveReportStaff, FeedBackStudent, FeedBackStaffs, NotificationStudent, NotificationStaffs
+from .models import CustomUser, AdminHOD, Staffs, Courses, Subjects, Students, Attendance, AttendanceReport, LeaveReportStudent, LeaveReportStaff, FeedBackStudent, FeedBackStaffs, NotificationStudent, NotificationStaffs,Staffs_GV_HP
 
 # Register your models here.
 class UserModel(UserAdmin):
@@ -8,6 +8,7 @@ class UserModel(UserAdmin):
 
 
 admin.site.register(CustomUser, UserModel)
+admin.site.register(Staffs_GV_HP)
 
 admin.site.register(AdminHOD)
 admin.site.register(Staffs)

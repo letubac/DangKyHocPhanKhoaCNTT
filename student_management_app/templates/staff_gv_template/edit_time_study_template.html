@@ -1,10 +1,93 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>$Title$</title>
-</head>
-<body>
-$END$
-</body>
-</html>
+{% extends 'staff_gv_template/base_template.html' %}
+
+{% block page_title %}
+   <i class="far fa-save" style="color: red"></i> Chỉnh TG Môn Học | #ID {{tghoc.ID_time}}
+{% endblock page_title %}
+
+{% block main_content %}
+
+{% load static %}
+
+<section class="content">
+        <div class="container-fluid">
+
+            <div class="row">
+                <div class="col-md-12">
+                    <!-- general form elements -->
+                    <div class="card card-primary">
+                    <div class="card-header">
+                        <h3 class="card-title"><i class="far fa-edit"></i> Thay Đổi Thông Tin </h3>
+                    </div>
+                    <!-- /.card-header -->
+                    <!-- form start -->
+                    <form role="form" method="POST" action="{% url 'edit_time_study_save' %}">
+                        {% csrf_token %}
+
+
+                                {% comment %} Display Messages {% endcomment %}
+                                {% if messages %}
+                                <div class="form-group">
+                                <div class="col-12">
+                                    {% for message in messages %}
+                                    {% if message.tags == "error" %}
+                                        <div class="alert alert-danger alert-dismissible fade show" role="alert" style="margin-top: 10px;">
+                                        {{ message }}
+                                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                        </div>
+                                    {% elif message.tags == "success" %}
+                                        <div class="alert alert-success alert-dismissible fade show" role="alert" style="margin-top: 10px;">
+                                        {{ message }}
+                                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                        </div>
+                                    {% endif %}
+                                    {% endfor %}
+                                </div>
+                                </div>
+                                {% endif %}
+
+
+                        <div class="card-body">
+                            <div class="form-group">
+                                <label>Ngày Bắt Đầu </label>
+                                <input type="date" class="form-control" name="start_day" value="{{ tghoc.start_day|date:'Y-m-d' }}">
+                            </div>
+
+
+                            <div class="form-group">
+                                <label>Ngày Kết Thúc </label>
+                                <input type="date" class="form-control" name="end_day" value="{{ tghoc.end_day|date:'Y-m-d' }}">
+                            </div>
+
+                            <div class="form-group">
+                                <label>Mã Học Kì </label>
+                                <select class="form-control" name="course">
+                                    {% for course in session_years %}
+                                        <option value="{{ course.id }}" {% if course.id == tghoc.ID_time.id %} selected {% endif %}>TG Bắt Đầu:{{ course.session_start_year|date:'Y-m-d' }}| Kết Thúc {{ course.session_end_year|date:'Y-m-d' }} </option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+
+                        <!-- /.card-body -->
+
+                        <div class="card-footer">
+                            <input type="hidden" name="Study_id" value="{{ tghoc.ID_time }}" />
+                        <button type="submit" class="btn btn-primary">Cập Nhật</button>
+
+
+                        </div>
+                        </div>
+                    </form>
+                    </div>
+                    <!-- /.card -->
+
+                </div>
+            </div>
+
+        </div><!-- /.container-fluid -->
+      </section>
+
+  {% endblock main_content %}

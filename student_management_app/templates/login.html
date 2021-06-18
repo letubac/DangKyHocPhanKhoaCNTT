@@ -11,12 +11,12 @@
   <!-- /.login-logo -->
   <div class="card">
     <div class="card-body login-card-body">
-      <p class="login-box-msg">Đăng Nhập Vào Website </p>
+      <p class="login-box-msg"><img src="../../static/dist/img/logo.jpg" height="50" width="50"/>Đăng Nhập Vào Website </p>
 
       <form action="{% url 'doLogin' %}" method="POST">
       {% csrf_token %}
         <div class="input-group mb-3">
-          <input type="email" class="form-control" placeholder="Email" name="email">
+          <input type="email" class="form-control" placeholder="Địa Chỉ Email" name="email">
           <div class="input-group-append">
             <div class="input-group-text">
               <span class="fas fa-envelope"></span>
@@ -24,7 +24,7 @@
           </div>
         </div>
         <div class="input-group mb-3">
-          <input type="password" class="form-control" placeholder="Password" name="password">
+          <input type="password" class="form-control" placeholder="Mật Khẩu" name="password">
           <div class="input-group-append">
             <div class="input-group-text">
               <span class="fas fa-lock"></span>
@@ -55,7 +55,7 @@
             {% endfor %}
           </div>
           {% endif %}
-
+      </form>
           <!-- /.col -->
         </div>
       </form>

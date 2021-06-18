@@ -1,7 +1,7 @@
 
 from django.urls import path, include
 from . import views
-from .import HodViews, StaffViews, StudentViews
+from .import HodViews, StaffViews, StudentViews,StaffGVView
 
 
 urlpatterns = [
@@ -33,8 +33,14 @@ urlpatterns = [
     path('add_student_save/', HodViews.add_student_save, name="add_student_save"),
     path('edit_student/<student_id>', HodViews.edit_student, name="edit_student"),
     path('edit_student_save/', HodViews.edit_student_save, name="edit_student_save"),
+     path('add_saff_gv/', HodViews.add_saff_gv, name="add_saff_gv"),
+    path('add_saff_gv_save/', HodViews.add_saff_gv_save, name="add_saff_gv_save"),
+    path('edit_staff_gv/<staff_gv_id>', HodViews.edit_staff_gv, name="edit_staff_gv"),
+    path('edit_staff_gv_save/', HodViews.edit_staff_gv_save, name="edit_staff_gv_save"),
     path('manage_student/', HodViews.manage_student, name="manage_student"),
     path('delete_student/<student_id>/', HodViews.delete_student, name="delete_student"),
+     path('manage_staff_gv/', HodViews.manage_staff_gv, name="manage_staff_gv"),
+    path('delete_staff_gv/<staff_gv_id>/', HodViews.delete_staff_gv, name="delete_staff_gv"),
     path('add_subject/', HodViews.add_subject, name="add_subject"),
     path('add_subject_save/', HodViews.add_subject_save, name="add_subject_save"),
     path('manage_subject/', HodViews.manage_subject, name="manage_subject"),
@@ -47,15 +53,6 @@ urlpatterns = [
     path('student_feedback_message_reply/', HodViews.student_feedback_message_reply, name="student_feedback_message_reply"),
     path('staff_feedback_message/', HodViews.staff_feedback_message, name="staff_feedback_message"),
     path('staff_feedback_message_reply/', HodViews.staff_feedback_message_reply, name="staff_feedback_message_reply"),
-    path('student_leave_view/', HodViews.student_leave_view, name="student_leave_view"),
-    path('student_leave_approve/<leave_id>/', HodViews.student_leave_approve, name="student_leave_approve"),
-    path('student_leave_reject/<leave_id>/', HodViews.student_leave_reject, name="student_leave_reject"),
-    path('staff_leave_view/', HodViews.staff_leave_view, name="staff_leave_view"),
-    path('staff_leave_approve/<leave_id>/', HodViews.staff_leave_approve, name="staff_leave_approve"),
-    path('staff_leave_reject/<leave_id>/', HodViews.staff_leave_reject, name="staff_leave_reject"),
-    path('admin_view_attendance/', HodViews.admin_view_attendance, name="admin_view_attendance"),
-    path('admin_get_attendance_dates/', HodViews.admin_get_attendance_dates, name="admin_get_attendance_dates"),
-    path('admin_get_attendance_student/', HodViews.admin_get_attendance_student, name="admin_get_attendance_student"),
     path('admin_profile/', HodViews.admin_profile, name="admin_profile"),
     path('admin_profile_update/', HodViews.admin_profile_update, name="admin_profile_update"),
     
@@ -73,21 +70,61 @@ urlpatterns = [
     path('staff_apply_leave/', StaffViews.staff_apply_leave, name="staff_apply_leave"),
     path('staff_apply_leave_save/', StaffViews.staff_apply_leave_save, name="staff_apply_leave_save"),
     path('staff_feedback/', StaffViews.staff_feedback, name="staff_feedback"),
+    path('staff_gv_timetable/', StaffViews.staff_gv_timetable, name="staff_gv_timetable"),
     path('staff_feedback_save/', StaffViews.staff_feedback_save, name="staff_feedback_save"),
     path('staff_profile/', StaffViews.staff_profile, name="staff_profile"),
     path('staff_profile_update/', StaffViews.staff_profile_update, name="staff_profile_update"),
     path('staff_add_result/', StaffViews.staff_add_result, name="staff_add_result"),
     path('staff_add_result_save/', StaffViews.staff_add_result_save, name="staff_add_result_save"),
 
-    # URSL for Student
+    # URLS for Staff_gv
+    path('staff_gv_home/', StaffGVView.staff_gv_home, name="staff_gv_home"),
+    path('staff_gv_feedback/', StaffGVView.staff_gv_feedback, name="staff_gv_feedback"),
+    path('staff_gv_feedback_save/', StaffGVView.staff_gv_feedback_save, name="staff_gv_feedback_save"),
+    path('staff_gv_profile/', StaffGVView.staff_gv_profile, name="staff_gv_profile"),
+    path('staff_gv_profile_update/', StaffGVView.staff_gv_profile_update, name="staff_gv_profile_update"),
+    path('add_room/', StaffGVView.add_room, name="add_room"),
+    path('add_room_save/', StaffGVView.add_room_save, name="add_room_save"),
+    path('manage_session_gv/', StaffGVView.manage_session_gv, name="manage_session_gv"),
+    path('add_session_gv/', StaffGVView.add_session_gv, name="add_session_gv"),
+    path('add_session_save_gv/', StaffGVView.add_session_save_gv, name="add_session_save_gv"),
+    path('edit_session_gv/<session_id>', StaffGVView.edit_session_gv, name="edit_session_gv"),
+    path('edit_session_save_gv/', StaffGVView.edit_session_save_gv, name="edit_session_save_gv"),
+    path('delete_session_gv/<session_id>/', StaffGVView.delete_session_gv, name="delete_session_gv"),
+    path('manage_time_study/', StaffGVView.manage_time_study, name="manage_time_study"),
+    path('add_time_study_gv/', StaffGVView.add_time_study_gv, name="add_time_study_gv"),
+    path('add_time_study_save_gv/', StaffGVView.add_time_study_save_gv, name="add_time_study_save_gv"),
+    path('edit_time_study/<Study_id>/', StaffGVView.edit_time_study, name="edit_time_study"),
+    path('edit_time_study_save/', StaffGVView.edit_time_study_save, name="edit_time_study_save"),
+    path('delete_time_study/<Study_id>/', StaffGVView.delete_time_study, name="delete_time_study"),
+    path('manage_thuchanh_gv/', StaffGVView.manage_thuchanh_gv, name="manage_thuchanh_gv"),
+    path('add_thuchanh_gv/', StaffGVView.add_thuchanh_gv, name="add_thuchanh_gv"),
+    path('add_thuchanh_gv_save/', StaffGVView.add_thuchanh_gv_save, name="add_thuchanh_gv_save"),
+    path('edit_thuchanh_study/<maTH>/', StaffGVView.edit_thuchanh_study, name="edit_thuchanh_study"),
+    path('edit_thuchanh_save/', StaffGVView.edit_thuchanh_save, name="edit_thuchanh_save"),
+    path('delete_thuchanh_study/<maTH>/', StaffGVView.delete_thuchanh_study, name="delete_thuchanh_study"),
+    path('manage_nhomTH_gv/', StaffGVView.manage_nhomTH_gv, name="manage_nhomTH_gv"),
+    path('add_nhom_TH/', StaffGVView.add_nhom_TH, name="add_nhom_TH"),
+    path('add_nhomTH_save/', StaffGVView.add_nhomTH_save, name="add_nhomTH_save"),
+    path('edit_nhomTH_study/<maTH>/', StaffGVView.edit_nhomTH_study, name="edit_nhomTH_study"),
+    path('edit_nhomTH_save/', StaffGVView.edit_nhomTH_save, name="edit_nhomTH_save"),
+    path('delete_nhomTH_study/<id>/', StaffGVView.delete_nhomTH_study, name="delete_nhomTH_study"),
+    path('add_subject_gv/', StaffGVView.add_subject_gv, name="add_subject_gv"),
+    path('add_subject_save_gv/', StaffGVView.add_subject_save_gv, name="add_subject_save_gv"),
+    path('manage_subject_gv/', StaffGVView.manage_subject_gv, name="manage_subject_gv"),
+    path('edit_subject_gv/<subject_id>/', StaffGVView.edit_subject_gv, name="edit_subject_gv"),
+    path('edit_subject_save_gv/', StaffGVView.edit_subject_save_gv, name="edit_subject_save_gv"),
+    path('delete_subject_gv/<subject_id>/', StaffGVView.delete_subject_gv, name="delete_subject_gv"),
+
+    # URL for Student
     path('student_home/', StudentViews.student_home, name="student_home"),
-    path('student_view_attendance/', StudentViews.student_view_attendance, name="student_view_attendance"),
-    path('student_view_attendance_post/', StudentViews.student_view_attendance_post, name="student_view_attendance_post"),
-    path('student_apply_leave/', StudentViews.student_apply_leave, name="student_apply_leave"),
-    path('student_apply_leave_save/', StudentViews.student_apply_leave_save, name="student_apply_leave_save"),
     path('student_feedback/', StudentViews.student_feedback, name="student_feedback"),
     path('student_feedback_save/', StudentViews.student_feedback_save, name="student_feedback_save"),
     path('student_profile/', StudentViews.student_profile, name="student_profile"),
     path('student_profile_update/', StudentViews.student_profile_update, name="student_profile_update"),
-    path('student_view_result/', StudentViews.student_view_result, name="student_view_result"),
+    path('student_register_course/', StudentViews.student_register_course, name="student_register_course"),
+    path('student_view_timetable/', StudentViews.student_view_timetable, name="student_view_timetable"),
+    path('student_view_diploma/', StudentViews.student_view_diploma, name="student_view_diploma"),
+
+
 ]

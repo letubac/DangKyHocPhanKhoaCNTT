@@ -1,7 +1,7 @@
 {% extends 'hod_template/base_template.html' %}
 
 {% block page_title %}
-    Edit Subject | #ID : {{ subject.id }}
+   <i class="far fa-save" style="color: red"></i> Chỉnh Sửa Môn Học | #ID : {{ subject.id }}
 {% endblock page_title %}
 
 {% block main_content %}
@@ -16,7 +16,7 @@
                     <!-- general form elements -->
                     <div class="card card-primary">
                     <div class="card-header">
-                        <h3 class="card-title">Edit Subject</h3>
+                        <h3 class="card-title"><i class="far fa-edit"></i> Thay Đổi Thông Tin Môn Học</h3>
                     </div>
                     <!-- /.card-header -->
                     <!-- form start -->
@@ -52,12 +52,12 @@
 
                         <div class="card-body">
                             <div class="form-group">
-                                <label>Subject Name </label>
+                                <label>Tên Môn Học </label>
                                 <input type="text" class="form-control" name="subject" value="{{ subject.subject_name }}">
                             </div>
 
                             <div class="form-group">
-                                <label>Course </label>
+                                <label>Ngành Học </label>
                                 <select class="form-control" name="course">
                                     {% for course in courses %}
                                         <option value="{{ course.id }}" {% if course.id == subject.course_id.id %} selected {% endif %}>{{ course.course_name }}</option>
@@ -66,7 +66,7 @@
                             </div>
 
                             <div class="form-group">
-                                <label>Staff </label>
+                                <label>Giảng Viên </label>
                                 <select class="form-control" name="staff">
                                     {% for staff in staffs %}
                                         <option value="{{ staff.id }}" {% if staff.id == subject.staff_id.id %} selected {% endif %}>{{ staff.first_name }} {{ staff.last_name }}</option>
@@ -75,13 +75,20 @@
                                 
                                 <input type="hidden" name="subject_id" value="{{ subject.id }}" />
                             </div>
-
+                         <div class="form-group">
+                                <label>Số TC </label>
+                                <input type="text" class="form-control" name="so_tc" value="{{ subject.so_tc }}">
+                            </div>
+                             <div class="form-group">
+                                <label>Số SV ĐK </label>
+                                <input type="text" class="form-control" name="tongsvdk" value="{{ subject.tongsvdk }}">
+                            </div>
                         </div>
                         <!-- /.card-body -->
 
                         <div class="card-footer">
                         
-                        <button type="submit" class="btn btn-primary">Update Subject</button>
+                        <button type="submit" class="btn btn-primary">Cập Nhật</button>
                         </div>
                     </form>
                     </div>
